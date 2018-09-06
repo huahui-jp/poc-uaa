@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+		<div id="wrapper">
+				<!-- Navigation -->
+				<nav th:replace="fragments/navi :: navi">
+				</nav>
+
+				<div id="page-wrapper">
+						<div class="row">
+								<div class="col-lg-12">
+										<h1 class="page-header" th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava('出错了：'+(errortitle==null?'请联系管理员':errortitle)),'\n','&lt;br /&gt;'))}">出错啦！请联系管理员</h1>
+								</div>
+								<!-- /.col-lg-12 -->
+						</div>
+						<!-- /.row -->
+						<div class="row">
+								<div class="col-lg-12">
+												<div class="alert alert-danger">
+														<p th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava('时间：'+timestamp),'\n','&lt;br /&gt;'))}">Wrong input!</p>
+														<p th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava('URL：'+URL),'\n','&lt;br /&gt;'))}">Wrong input!</p>
+														<p th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava('来源：'+path),'\n','&lt;br /&gt;'))}">Wrong input!</p>
+														<p th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava('状态：'+status),'\n','&lt;br /&gt;'))}">Wrong input!</p>
+														<p th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava('错误：'+error),'\n','&lt;br /&gt;'))}">Wrong input!</p>
+														<p th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava('异常：'+exception),'\n','&lt;br /&gt;'))}">Wrong input!</p>
+														<p th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava('信息：'+message),'\n','&lt;br /&gt;'))}">Wrong input!</p>
+												</div>
+								</div>
+						</div>
+				</div>
+				<!-- /#page-wrapper -->
+
+		</div>
+		<!-- /#wrapper -->
+		<script src="vendor/jquery/jquery.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="vendor/metisMenu/metisMenu.min.js"></script>
+		<script src="uaa.js"></script>
+</body>
+</html>

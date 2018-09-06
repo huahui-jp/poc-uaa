@@ -1,0 +1,27 @@
+				<nav th:fragment="navi" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+						<div class="navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+										<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+								</button>
+								<a class="navbar-brand" th:href="${contextPath+'/home'}">统一身份认证 - 自助服务</a>
+						</div>
+						<!-- /.navbar-header -->
+
+						<ul class="nav navbar-top-links navbar-right">
+								<li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> 登出</a></li>
+						</ul>
+						<!-- /.navbar-top-links -->
+
+						<div class="navbar-default sidebar" role="navigation">
+								<div class="sidebar-nav navbar-collapse">
+										<ul class="nav" id="side-menu">
+												<li th:if="${#httpServletRequest.remoteUser!=null}"><a th:href="${contextPath+'/home'}" th:inline="text"><i class="fa fa-home fa-fw"></i> 首页([[${#httpServletRequest.remoteUser}]])</a></li>
+												<li th:if="${#httpServletRequest.remoteUser!=null}"><a th:href="${contextPath+'/psninf'}"><i class="fa fa-user fa-fw"></i> 编辑个人信息</a></li>
+												<li th:if="${#httpServletRequest.remoteUser!=null}"><a th:href="${contextPath+'/chgpwd'}"><i class="fa fa-gear fa-fw"></i> 修改密码密保</a></li>
+												<li><a th:href="${contextPath+'/logout'}"><i class="fa fa-sign-out fa-fw"></i> 登出</a></li>
+										</ul>
+								</div>
+								<!-- /.sidebar-collapse -->
+						</div>
+						<!-- /.navbar-static-side -->
+				</nav>

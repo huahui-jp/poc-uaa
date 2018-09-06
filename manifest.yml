@@ -1,0 +1,19 @@
+---
+applications:
+- name: uaa
+  memory: 1024M
+path: target/uaa-0.1-RELEASE.jar
+buildpack: java_buildpack
+env:
+    CF_TARGET: https://api.system.rayfaypcf.com
+    ID_SELFSERVICE_URL: https://idss.apps.rayfaypcf.com
+    RESET_PASSWORD_URL: https://idss.apps.rayfaypcf.com/rstpwd1
+    RAYFAY_LDAP_PROVIDERURL: ldap://192.168.103.203:1389/dc=cftest,dc=net
+    RAYFAY_LDAP_MANAGERDN: cn=directory manager
+    RAYFAY_LDAP_MANAGERPASS: qwert12345
+#    JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=n,address=192.168.120.134:16000,suspend=y
+#    -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=16000
+services:
+- RF-Platform-Bus
+- RF-Platform-Eureka
+

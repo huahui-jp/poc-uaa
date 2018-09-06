@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>统一身份认证登录</title>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet"/>
+    <link href="uaa.css" rel="stylesheet"/>
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="container-fluid flex-center">
+    <div class="row flex-center">
+        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12" style="box-shadow: 0 0 40px rgba(0, 0, 0, 1);">
+            <div class="row rowFlex">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 hidden-xs"
+                     style="flex-direction: column; justify-content: center; align-items: flex-start; padding: 0px;">
+                    <img src="images/panel.png" style="height: 100%; width: 100%"/>
+                    <img src="images/logo.png"
+                         style="height: auto; width: 30%; position: absolute; top: 10%; left: 35%"/>
+                    <img src="images/title.png"
+                         style="height: auto; width: 90%; position: absolute; top: 35%; left: 5%;"/>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 inputForm flex-center">
+                    <div style="margin: 0px 40px 0px 40px">
+                        <div>
+                            <h2>统一身份认证</h2>
+                            <h5>Unified Identity Authentication</h5>
+                        </div>
+                        <div style="margin-top: 50px">
+                            <form th:action="@{/login}" method="post">
+                                <fieldset>
+                                    <div class="form-group" style="margin-bottom: 0px">
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-addon field-no-border-radius border-colors"
+                                                  style="border-bottom: 0px;">
+                                                <span class="glyphicon glyphicon-user" aria-hidden="true"/>
+                                            </span>
+                                            <span class="input-group-addon field-no-border-radius label-form"
+                                                  style="border-bottom: 0px">
+                                                <div class="input-label">
+                                                    <span>用户名</span>
+                                                    <span class="divider"></span>
+                                                </div>
+                                            </span>
+                                            <input class="form-control field-no-border-radius input-form"
+                                                   style="border-bottom: 0px"
+                                                   name="username" id="username"
+                                                   type="text"
+                                                   autofocus="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-addon field-no-border-radius border-colors">
+                                                <span class="glyphicon glyphicon-lock" aria-hidden="true"/>
+                                            </span>
+                                            <span class="input-group-addon field-no-border-radius label-form">
+                                                <div class="input-label">
+                                                    <span>密　码</span>
+                                                    <span class="divider"></span>
+                                                </div>
+                                            </span>
+                                            <input class="form-control field-no-border-radius input-form"
+                                                   name="password" id="password"
+                                                   type="password" value=""/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-addon field-no-border-radius" style="padding: 0px">
+                                                <img  id="codePic" src="vcode"/>
+                                            </span>
+                                            <input type="text" id="kaptcha" name="kaptcha"
+                                                   class="form-control field-no-border-radius input-form"
+                                                   placeholder="请输入验证码"/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <a href="#" id="newPic" onclick="getPic();">看不清楚，换一张</a>
+                                    </div>
+                                    <div class="form-group form-actions">
+                                        <div style="text-align: center">
+                                            <button type="submit" class="btn btn-sm btn-block button-color btn-warning"
+                                                    style="font-size: 1.3em;" id="loginBtn">提交认证
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group pull-right">
+                                        <a href="#" th:href="${resetPasswordUrl}" class="a-color">忘记密码？</a>
+                                    </div>
+                                    <div>
+                                        <a href="#" th:href="${caLicenseDownLoadUrl}">CA证书下载</a>
+                                    </div>
+                                </fieldset>
+                            </form>
+                            <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION'] != null}"
+                                 th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"
+                                 class="alert alert-danger alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                </button>
+                                <span th:utext="${#strings.unescapeJava(#strings.replace(#strings.escapeJava(errorMsg),'\n','&lt;br /&gt;'))}">Wrong input!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/metisMenu/metisMenu.min.js"></script>
+<script src="uaa.js"></script>
+<script type="text/javascript">
+    function getPic(){
+        $("#codePic").attr("src","vcode?flag="+Math.random());
+    };
+</script>
+</body>
+</html>

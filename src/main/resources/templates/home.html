@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>统一身份认证登录</title>
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
+<link href="uaa.css" rel="stylesheet" />
+<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+
+		<div class="container">
+				<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+								<div class="login-panel panel panel-default">
+										<div class="panel-heading">
+												<h3 th:if="${#httpServletRequest.remoteUser!=null}" th:inline="text">欢迎[[${#httpServletRequest.remoteUser}]]！</h3>
+										</div>
+										<div class="alert alert-success">
+												<span>您已成功登录。</span>
+										</div>
+										<div class="panel-body">
+												<div class="form-group form-actions">
+														<div style="text-align: center">
+																<a href="#" th:href="${idSelfserviceUrl}" class="btn btn-lg btn-info" style="width:60%;"><i class="fa fa-user fa-fw"></i>身份自助服务</a>
+																<a href="logout" class="btn btn-lg btn-warning" style="width:30%;">登出</a>
+														</div>
+												</div>
+										</div>
+								</div>
+						</div>
+				</div>
+		</div>
+		<script src="vendor/jquery/jquery.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="vendor/metisMenu/metisMenu.min.js"></script>
+		<script src="uaa.js"></script>
+</body>
+</html>
